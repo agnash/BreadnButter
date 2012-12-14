@@ -1,4 +1,4 @@
-// Helps one determine the exposure required to make a desired profit on a particular stock
+// This is a simple program that calculates helpful stock-trade scenarios
 
 #include "stdafx.h"
 #include <iostream>
