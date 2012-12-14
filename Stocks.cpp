@@ -1,4 +1,4 @@
-// This is a simple program that calculates helpful stock-trade scenarios
+// This is a simple program that calculates helpful stock trading scenarios
 
 #include "stdafx.h"
 #include <iostream>
