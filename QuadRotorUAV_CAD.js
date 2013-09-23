@@ -31,6 +31,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([1.25, -1.25, 0]), 
             // right vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([0.75, -1.75, 0])),
+            // right standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.9375, 0.064]),
+            // right standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.3125, 0.064]),
             // left vertical support - boom
             difference(
                 color('tan', cube({size: [0.5, 1.25, 0.75]}).translate([-0.5, 0, 0])),
@@ -42,6 +46,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([-0.5 + 0.064, -1.25, 0]),
             // left vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([-0.5, -1.75, 0])),
+            // left standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.9375, 0.064]),
+            // left standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.3125, 0.064]),
             // top plate
             color('silver', cube({size: [1.75, 1.25, 0.064]}).translate([-0.5, 0, 0.75]))
         ).translate([0, 0, 0]),
@@ -60,6 +68,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([1.25, -1.25, 0]), 
             // right vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([0.75, -1.75, 0])),
+            // right standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.9375, 0.064]),
+            // right standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.3125, 0.064]),
             // left vertical support - boom
             difference(
                 color('tan', cube({size: [0.5, 1.25, 0.75]}).translate([-0.5, 0, 0])),
@@ -71,6 +83,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([-0.5 + 0.064, -1.25, 0]),
             // left vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([-0.5, -1.75, 0])),
+            // left standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.9375, 0.064]),
+            // left standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.3125, 0.064]),
             // top plate
             color('silver', cube({size: [1.75, 1.25, 0.064]}).translate([-0.5, 0, 0.75]))
         ).rotateZ(90).translate([11.375, 10.625, 0]),
@@ -89,6 +105,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([1.25, -1.25, 0]), 
             // right vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([0.75, -1.75, 0])),
+            // right standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.9375, 0.064]),
+            // right standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.3125, 0.064]),
             // left vertical support - boom
             difference(
                 color('tan', cube({size: [0.5, 1.25, 0.75]}).translate([-0.5, 0, 0])),
@@ -100,6 +120,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([-0.5 + 0.064, -1.25, 0]),
             // left vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([-0.5, -1.75, 0])),
+            // left standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.9375, 0.064]),
+            // left standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.3125, 0.064]),
             // top plate
             color('silver', cube({size: [1.75, 1.25, 0.064]}).translate([-0.5, 0, 0.75]))
         ).rotateZ(180).translate([0.75, 22, 0]),
@@ -118,6 +142,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([1.25, -1.25, 0]), 
             // right vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([0.75, -1.75, 0])),
+            // right standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.9375, 0.064]),
+            // right standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([0.282 + 0.75, 0.3125, 0.064]),
             // left vertical support - boom
             difference(
                 color('tan', cube({size: [0.5, 1.25, 0.75]}).translate([-0.5, 0, 0])),
@@ -129,6 +157,10 @@ function main() {
             rotate([0, -90, 0], color('tan', linear_extrude({height: 0.064}, polygon([[0.064, 0], [0.17 + (2 * 0.064), 0], [2 * 0.064, -0.5], [0.064, -0.5]])))).translate([-0.5 + 0.064, -1.25, 0]),
             // left vertical support - baseplate, horizontal
             color('tan', cube({size: [0.5, 0.5, 0.064]}).translate([-0.5, -1.75, 0])),
+            // left standoff - inner
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.9375, 0.064]),
+            // left standoff - outer
+            color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.3125, 0.064]),
             // top plate
             color('silver', cube({size: [1.75, 1.25, 0.064]}).translate([-0.5, 0, 0.75]))
         ).rotateZ(-90).translate([-10.625, 11.375, 0])
