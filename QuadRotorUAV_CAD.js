@@ -163,6 +163,11 @@ function main() {
             color('green', cylinder({r: 0.125, h: 0.622})).translate([-0.282, 0.3125, 0.064]),
             // top plate
             color('silver', cube({size: [1.75, 1.25, 0.064]}).translate([-0.5, 0, 0.75]))
-        ).rotateZ(-90).translate([-10.625, 11.375, 0])
+        ).rotateZ(-90).translate([-10.625, 11.375, 0]),
+        // inner landing gear support 1
+        union(
+            linear_extrude({height: 0.064}, polygon([[0, 0], [0, 1.21], [0.5, 1], [0.5, 0]])),
+            linear_extrude({height: 0.064}, polygon([[0, 1.21], [0.57, 2.6], [1.07, 2.39], [0.5, 1]]))
+        ).rotateY(90).translate([0.75, 5, 0.5])
     );
 }
