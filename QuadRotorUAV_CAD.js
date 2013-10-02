@@ -164,10 +164,65 @@ function main() {
             // top plate
             color('silver', cube({size: [1.75, 1.25, 0.064]}).translate([-0.5, 0, 0.75]))
         ).rotateZ(-90).translate([-10.625, 11.375, 0]),
-        // inner landing gear support 1
+        // inner landing gear support - 1
         union(
-            linear_extrude({height: 0.064}, polygon([[0, 0], [0, 1.21], [0.5, 1], [0.5, 0]])),
-            linear_extrude({height: 0.064}, polygon([[0, 1.21], [0.57, 2.6], [1.07, 2.39], [0.5, 1]]))
-        ).rotateY(90).translate([0.75, 5, 0.5])
+            // right
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([0.75, 0, 0.75]),
+            // left
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([-0.064, 0, 0.75]),
+            // cross spacer
+            color('green', cylinder({r: 0.125, h: 0.75})).rotateY(90).translate([0, 0.25, -0.5])
+        ).translate([0, 7, 0]),
+        // inner landing gear support - 2
+        union(
+            // right
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([0.75, 0, 0.75]),
+            // left
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([-0.064, 0, 0.75]),
+            // cross spacer
+            color('green', cylinder({r: 0.125, h: 0.75})).rotateY(90).translate([0, 0.25, -0.5])
+        ).rotateZ(90).translate([11.375 - 7, 10.625, 0]),
+        // inner landing gear support - 3
+        union(
+            // right
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([0.75, 0, 0.75]),
+            // left
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([-0.064, 0, 0.75]),
+            // cross spacer
+            color('green', cylinder({r: 0.125, h: 0.75})).rotateY(90).translate([0, 0.25, -0.5])
+        ).rotateZ(180).translate([0.75, 22 - 7, 0]),
+        // inner landing gear support - 4
+        union(
+            // right
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([0.75, 0, 0.75]),
+            // left
+            difference(
+                cube({size: [1.5, 2, 0.064]}),
+                cube({size: [1, 1.5, 0.064]}).translate([0, 0.5, 0])
+            ).rotateY(90).translate([-0.064, 0, 0.75]),
+            // cross spacer
+            color('green', cylinder({r: 0.125, h: 0.75})).rotateY(90).translate([0, 0.25, -0.5])
+        ).rotateZ(-90).translate([-10.625 + 7, 11.375, 0])
     );
 }
