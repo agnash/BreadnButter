@@ -2,6 +2,8 @@
 
 function getParameterDefinitions() {
   return [
+    { name: 'mDiameter', type: 'float', initial: 35.0, caption: "Motor diameter (mm):"},
+    { name: 'mMountWidth', type: 'float', initial: 58.0, caption: "Motor mount diameter (mm):"},
     { name: 'mLength', type: 'float', initial: 18, caption: "Motor-to-motor distance:"},
     { name: 'battLength', type: 'float', initial: 5.0, caption: "Length of battery:" },
     { name: 'battWidth', type: 'float', initial: 2.0, caption: "Width of battery:" },
@@ -16,16 +18,21 @@ function main(params) {
     echo("Width of battery: " + params.battWidth);
     echo("Height of battery: " + params.battHeight);
     echo("Aluminum plate thickness: " + params.plateThickness);
-    var quad = makeQuad(params.mLength, params.battLength, params.battWidth, params.battHeight, params.plateThickness);
+    var quad = makeQuad(params.mDiameter, params.mMountWidth, params.mLength, params.battLength, params.battWidth, params.battHeight, params.plateThickness);
     return quad;
 }
 
-function makeQuad(mLength, battLength, battWidth, battHeight, plateThickness) {
+function makeQuad(mDiameter, mMountWidth, mLength, battLength, battWidth, battHeight, plateThickness) {
+    var bays = makeEngineBays();
     var booms = makeBooms(mLength, plateThickness);
     var model = union(
         booms
     );
     return model;
+}
+
+function makeEngineBays() {
+
 }
 
 function makeBooms(mLength, plateThickness) {
@@ -34,14 +41,14 @@ function makeBooms(mLength, plateThickness) {
             cube({size: [0.75, mLength, 0.75]}),
             cube({size: [0.75 - (2 * plateThickness), mLength, 0.75 - (2 * plateThickness)]}).translate([plateThickness, 0, plateThickness])
         ),
-        difference(
+        color('yellow', difference(
             cube({size: [(mLength - 0.75) / 2, 0.75, 0.75]}),
             cube({size: [(mLength - 0.75) / 2, 0.75 - (2 * plateThickness), 0.75 - (2 * plateThickness)]}).translate([0, plateThickness, plateThickness])
-        ).translate([-(mLength - 0.75) / 2, (mLength - 0.75) / 2, 0]),
-        difference(
+        )).translate([-(mLength - 0.75) / 2, (mLength - 0.75) / 2, 0]),
+        color('yellow', difference(
             cube({size: [(mLength - 0.75) / 2, 0.75, 0.75]}),
             cube({size: [(mLength - 0.75) / 2, 0.75 - (2 * plateThickness), 0.75 - (2 * plateThickness)]}).translate([0, plateThickness, plateThickness])
-        ).translate([0.75, (mLength - 0.75) / 2, 0])
+        )).translate([0.75, (mLength - 0.75) / 2, 0])
     );
     echo("**********Boom arms**********");
     echo("Boom arm 1: " + mLength + " inches");
