@@ -223,6 +223,19 @@ function main() {
             ).rotateY(90).translate([-0.064, 0, 0.75]),
             // cross spacer
             color('green', cylinder({r: 0.125, h: 0.75})).rotateY(90).translate([0, 0.25, -0.5])
-        ).rotateZ(-90).translate([-10.625 + 7, 11.375, 0])
+        ).rotateZ(-90).translate([-10.625 + 7, 11.375, 0]),
+        // battery plate
+        union(
+            color('silver', cube({size: [5, 2.5, 0.064]})),
+            color('green', cylinder({r: 0.125, h: (1.25 + 0.75 + 0.064)})).translate([4.75, 2.25, 0.064]),
+            color('green', cylinder({r: 0.125, h: (1.25 + 0.75 + 0.064)})).translate([4.75, 0.25, 0.064]),
+            color('green', cylinder({r: 0.125, h: (1.25 + 0.75 + 0.064)})).translate([0.25, 2.25, 0.064]),
+            color('green', cylinder({r: 0.125, h: (1.25 + 0.75 + 0.064)})).translate([0.25, 0.25, 0.064])
+        ).rotateZ(135).translate([3.0625, 10.187, -(1.25 + 0.064)]),
+        // landing strut
+        union(
+            cube({size: [0.064, 4.5, 0.5]}).rotateX(215),
+            cube({size: [0.064, 4.5, 0.5]}).rotateX(215).translate([0.75 - 0.064, 0, 0])
+        ).translate([0, 9, -0.25])
     );
 }
