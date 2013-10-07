@@ -43,5 +43,9 @@ function makeBooms(mLength, plateThickness) {
             cube({size: [(mLength - 0.75) / 2, 0.75 - (2 * plateThickness), 0.75 - (2 * plateThickness)]}).translate([0, plateThickness, plateThickness])
         ).translate([0.75, (mLength - 0.75) / 2, 0])
     );
+    echo("**********Boom arms**********");
+    echo("Boom arm 1: " + mLength + " inches");
+    echo("Boom arm 2: " + ((mLength - 0.75) / 2) + " inches");
+    echo("Boom arm 3: " + ((mLength - 0.75) / 2) + " inches");
     return arms;
 }
