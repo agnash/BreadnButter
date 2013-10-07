@@ -1,3 +1,5 @@
+/* This is a work in progress. Copy and paste this code into editor at www.openjscad.org */
+
 function getParameterDefinitions() {
   return [
     { name: 'mLength', type: 'float', initial: 18, caption: "Motor-to-motor distance:"},
