@@ -23,7 +23,7 @@ function main(params) {
 }
 
 function makeQuad(mDiameter, mMountWidth, mLength, battLength, battWidth, battHeight, plateThickness) {
-    var bays = makeEngineBays();
+    var bays = makeEngineBays(mMountWidth, mLength);
     var booms = makeBooms(mLength, plateThickness);
     var model = union(
         booms
@@ -31,7 +31,7 @@ function makeQuad(mDiameter, mMountWidth, mLength, battLength, battWidth, battHe
     return model;
 }
 
-function makeEngineBays() {
+function makeEngineBays(mMountWidth, mLength) {
 
 }
 
