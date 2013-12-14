@@ -55,19 +55,31 @@ function boomArm(length) {
     );
 }
 
+// standoff object constructor
+function standoff(height) {
+    this.height = height;
+    this.standoff = difference(
+        cylinder({r: 0.125, h: this.height}),
+        cylinder({r: 0.0625, h: this.height})
+    );
+}
+
 
 function makeQuad(mDiameter, mMountWidth, mLength, battLength, battWidth, battHeight, plateThickness) {
     var plateLength = 4;
     var plateWidth = 6;
     var cutout = 1.5;
+    var standoffHeight = 0.75;
     var plateLow = makeLowerPlate(plateLength, plateWidth, plateThickness);
     var booms = makeBooms(mLength, plateThickness, plateLength);
     var plateHigh = makeUpperPlate(plateLength, plateWidth, plateThickness, cutout);
+    var standoffs = makeStandoffs(standoffHeight);
     //var bays = makeEngineBays(mMountWidth, mLength);
     var model = union(
         plateLow,
         booms,
-        plateHigh
+        plateHigh,
+        standoffs
     );
     return model;
 }
@@ -103,4 +115,9 @@ function makeBooms(mLength, plateThickness, plateLength) {
 function makeUpperPlate(length, width, thickness, cutout) {
     var plateH = new upperPlate(length, width, thickness, cutout);
     return plateH.plate.translate([-length / 2, 0, 0.75]);
+}
+
+function makeStandoffs(height) {
+    var standoff1 = new standoff(height);
+    return standoff1.standoff.translate([0, -5, 0]);
 }
