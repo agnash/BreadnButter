@@ -27,9 +27,9 @@ function lowerPlate(length, width, thickness) {
     this.length = length;
     this.width = width;
     this.thickness = thickness;
-    this.plate = difference(
+    this.plate = color('gray', difference(
         cube({size: [this.length, this.width, this.thickness]})
-    );
+    ));
     
 }
 
@@ -39,10 +39,10 @@ function upperPlate(length, width, thickness, cutout) {
     this.width = width;
     this.thickness = thickness;
     this.cutout = cutout;
-    this.plate = difference(
+    this.plate = color('silver', difference(
         cube({size: [this.length, this.width, this.thickness]}),
         cube({size: [this.length - 2*0.5, this.cutout, this.thickness]}).translate([0.5, this.width - this.cutout, 0])
-    );
+    ));
 }
 
 // boom arm object constructor
@@ -58,10 +58,18 @@ function boomArm(length) {
 // standoff object constructor
 function standoff(height) {
     this.height = height;
-    this.standoff = difference(
+    this.standoff = color('green', difference(
         cylinder({r: 0.125, h: this.height}),
         cylinder({r: 0.0625, h: this.height})
-    );
+    ));
+}
+
+// battery plate object constructor
+function batteryPlate(length, width, thickness) {
+    this.length = length;
+    this.width = width;
+    this.thickness = thickness;
+    this.plate = color('orange', cube({size: [this.length, this.width, this.thickness]}));
 }
 
 
@@ -69,13 +77,18 @@ function makeQuad(mDiameter, mMountWidth, mLength, battLength, battWidth, battHe
     var plateLength = 4;
     var plateWidth = 6;
     var cutout = 1.5;
-    var standoffHeight = 0.75;
+    var adjWidth = plateWidth - cutout; 
+    var refHeight = 5.25;    // temporary battery/payload height reference height
+    var heightReference = color('black', cylinder({r: 0.125, h: refHeight}));   // temporary battery/payload height reference cylinder
+    var battPlate = makeBattPlate(adjWidth);
     var plateLow = makeLowerPlate(plateLength, plateWidth, plateThickness);
     var booms = makeBooms(mLength, plateThickness, plateLength);
     var plateHigh = makeUpperPlate(plateLength, plateWidth, plateThickness, cutout);
-    var standoffs = makeStandoffs(standoffHeight);
+    var standoffs = makeStandoffs();
     //var bays = makeEngineBays(mMountWidth, mLength);
     var model = union(
+        heightReference.translate([0, 2, -(refHeight + plateThickness)]),
+        battPlate,
         plateLow,
         booms,
         plateHigh,
@@ -89,6 +102,15 @@ function makeEngineBays(mMountWidth, mLength) {
 
 }
 */
+
+function makeBattPlate(adjustedWidth) {
+    var length = 3.5;
+    var width = adjustedWidth;
+    var thickness = 0.125;
+    var drop = 1.25;
+    var plateB = new batteryPlate(length, width, thickness);
+    return plateB.plate.translate([-length / 2, 0, -drop]);
+}
 
 function makeLowerPlate(length, width, thickness) {
     var plateL = new lowerPlate(length, width, thickness);
@@ -117,7 +139,17 @@ function makeUpperPlate(length, width, thickness, cutout) {
     return plateH.plate.translate([-length / 2, 0, 0.75]);
 }
 
-function makeStandoffs(height) {
-    var standoff1 = new standoff(height);
-    return standoff1.standoff.translate([0, -5, 0]);
+function makeStandoffs() {
+    var frameSpace = 0.75;
+    var frameSpacer = new standoff(frameSpace);
+    return union(
+        frameSpacer.standoff.translate([0, 0.3, 0]),      // bow
+        frameSpacer.standoff.translate([1.7, 2, 0]),      // port
+        frameSpacer.standoff.translate([0, 3.7, 0]),      // stern
+        frameSpacer.standoff.translate([-1.7, 2, 0]),     // starboard
+        frameSpacer.standoff.translate([1.7, 4.8, 0]),    // port quarter fore
+        frameSpacer.standoff.translate([1.7, 5.7, 0]),    // port quarter aft
+        frameSpacer.standoff.translate([-1.7, 4.8, 0]),   // starboard quarter fore
+        frameSpacer.standoff.translate([-1.7, 5.7, 0])    // starboard quarter aft
+    );
 }
