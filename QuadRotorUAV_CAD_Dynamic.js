@@ -77,10 +77,9 @@ function makeQuad(mDiameter, mMountWidth, mLength, battLength, battWidth, battHe
     var plateLength = 4;
     var plateWidth = 6;
     var cutout = 1.5;
-    var adjWidth = plateWidth - cutout; 
     var refHeight = 5.25;    // temporary battery/payload height reference height
     var heightReference = color('black', cylinder({r: 0.125, h: refHeight}));   // temporary battery/payload height reference cylinder
-    var battPlate = makeBattPlate(adjWidth);
+    var battPlate = makeBattPlate(plateWidth, cutout);
     var plateLow = makeLowerPlate(plateLength, plateWidth, plateThickness);
     var booms = makeBooms(mLength, plateThickness, plateLength);
     var plateHigh = makeUpperPlate(plateLength, plateWidth, plateThickness, cutout);
@@ -103,13 +102,13 @@ function makeEngineBays(mMountWidth, mLength) {
 }
 */
 
-function makeBattPlate(adjustedWidth) {
-    var length = 3.5;
-    var width = adjustedWidth;
+function makeBattPlate(width, cutout) {
+    var length = 2;
+    var adjustedWidth = width - cutout;
     var thickness = 0.125;
     var drop = 1.25;
-    var plateB = new batteryPlate(length, width, thickness);
-    return plateB.plate.translate([-length / 2, 0, -drop]);
+    var plateB = new batteryPlate(length, adjustedWidth, thickness);
+    return plateB.plate.translate([-length / 2, cutout, -drop]);
 }
 
 function makeLowerPlate(length, width, thickness) {
@@ -141,15 +140,18 @@ function makeUpperPlate(length, width, thickness, cutout) {
 
 function makeStandoffs() {
     var frameSpace = 0.75;
+    var battSpace = 1.25;
     var frameSpacer = new standoff(frameSpace);
+    var battSpacer = new standoff(battSpace);
     return union(
-        frameSpacer.standoff.translate([0, 0.3, 0]),      // bow
-        frameSpacer.standoff.translate([1.7, 2, 0]),      // port
-        frameSpacer.standoff.translate([0, 3.7, 0]),      // stern
-        frameSpacer.standoff.translate([-1.7, 2, 0]),     // starboard
-        frameSpacer.standoff.translate([1.7, 4.8, 0]),    // port quarter fore
-        frameSpacer.standoff.translate([1.7, 5.7, 0]),    // port quarter aft
-        frameSpacer.standoff.translate([-1.7, 4.8, 0]),   // starboard quarter fore
-        frameSpacer.standoff.translate([-1.7, 5.7, 0])    // starboard quarter aft
+        frameSpacer.standoff.translate([0, 0.3, 0]),      // frame spacer: bow
+        frameSpacer.standoff.translate([1.7, 2, 0]),      // frame spacer: port
+        frameSpacer.standoff.translate([0, 3.7, 0]),      // frame spacer: stern
+        frameSpacer.standoff.translate([-1.7, 2, 0]),     // frame spacer: starboard
+        frameSpacer.standoff.translate([1.7, 4.8, 0]),    // frame spacer: port quarter fore
+        frameSpacer.standoff.translate([1.7, 5.7, 0]),    // frame spacer: port quarter aft
+        frameSpacer.standoff.translate([-1.7, 4.8, 0]),   // frame spacer: starboard quarter fore
+        frameSpacer.standoff.translate([-1.7, 5.7, 0]),   // frame spacer: starboard quarter aft
+        battSpacer.standoff.translate([7, 0, -(battSpace + 0.064)])       // battery spacer: port bow - TEMP LOCATION
     );
 }
