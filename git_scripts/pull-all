@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Pull current branch of all top-level git repositories in a directory
+
+for i in `ls`; do
+	if [ -d "$i" ]
+	then
+		cd $i
+		if [ -e ".git" ]
+		then
+			echo $i
+			git pull
+			echo "--"
+		fi
+		cd ../
+	fi
+done

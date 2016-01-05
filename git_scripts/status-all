@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Get the statuses of all top-level git repositories in a directory
+
+for i in `ls`; do
+	if [ -d "$i" ]
+	then
+		cd $i
+		if [ -e ".git" ]
+		then
+			echo $i
+			git status
+			echo "--"
+		fi
+		cd ../
+	fi
+done
