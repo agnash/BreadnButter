@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Clone all repos in a remote directory that aren't already in local directory
+
+if [ -z "$1" ] || [ -z "$2" ]
+then
+	echo "Usage: [user@]hostname remote-directory"
+else
+	SSHLOGIN="$1"
+	REMOTEDIR="$2"
+	#echo "Entered: $SSHLOGIN:~/$2"
+	for i in $(ssh $SSHLOGIN ls $REMOTEDIR)
+	do
+		if [ -e $i ]
+		then
+			echo "Skipping $i becuase a directory with that name already exists."
+		else
+			git clone $SSHLOGIN:~/$REMOTEDIR/$i
+		fi
+	done
+fi
