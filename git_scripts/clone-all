@@ -13,7 +13,7 @@ else
 	do
 		if [ -e $i ]
 		then
-			echo "Skipping $i becuase a directory with that name already exists."
+			echo "Skipping $i because a directory with that name already exists."
 		else
 			git clone $SSHLOGIN:~/$REMOTEDIR/$i
 		fi
